@@ -55,13 +55,12 @@ function posicionarBombas(campo,bombas){
     return campo
 }
 
-//Estou usando a main para testar
 function main(){
     var string = prompt("Digite o tamanho da matriz e as posições das bombas de acordo com o modelo proposto")
     var tamanho = parseInt(string.split(";")[0]);
     var campo = gerarCampo(tamanho);
-    let a = listaBombas(string)
-    campoComBombas = posicionarBombas(campo, a);
+    let listaPosicoesBombas = listaBombas(string)
+    campoComBombas = posicionarBombas(campo, listaPosicoesBombas);
     campoFinalizado = detectarBomba(tamanho,campoComBombas)
     console.log(a)
     console.table(campo); 
