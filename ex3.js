@@ -62,7 +62,6 @@ function main(){
     let listaPosicoesBombas = listaBombas(string)
     campoComBombas = posicionarBombas(campo, listaPosicoesBombas);
     campoFinalizado = detectarBomba(tamanho,campoComBombas)
-    console.log(a)
     console.table(campo); 
 }
 main()
