@@ -33,11 +33,29 @@ function conversor(string) {
     return stringNova;
 }
 
+function verificador(frase) {
+    var permitido = true;
+    var codigo = caractere.charCodeAt(0);
+    for(caractere in frase) {
+        if(codigo < 97 || codigo > 122) {
+            return false;
+        }
+    }
+    return permitido;
+}
+    
+//O programa não deve permitir o uso de caracteres especiais ou espaço
 function main() {
     var string = prompt("Insira uma frase qualquer: ").toLowerCase();
     console.log(string)
-    var numeros = conversor(string);
-    console.log(numeros);
+    var permitirFrase = verificador(string);
+    if(permitirFrase) {
+        var numeros = conversor(string);
+        console.log(numeros);
+    }
+    else {
+        console.log("A frase inserida é inválida.")
+    }
 }
 
 main()
