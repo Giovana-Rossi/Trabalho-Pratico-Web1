@@ -12,8 +12,24 @@ function transformarString(string){
 function transformarLista(listaDeStrings){ 
     return listaDeStrings.map(transformarString); 
 }
-function gerarCampo(string){
-    var tamanho = parseInt(string.split(";")[0]);
+function detectarBomba(tamanho, campo){
+    for(let i=0;i<tamanho;i++){
+        for(let j=0;j<tamanho;j++){
+            if(campo[i][j]=='X'){
+                if(i+1<tamanho && j+1<tamanho && campo[i+1][j+1]!= 'X')campo[i+1][j+1] += 1
+                if(i-1>=0 && j-1>=0 && campo[i-1][j-1]!='X')campo[i-1][j-1] += 1
+                if(j+1<tamanho && campo[i][j+1]!='X')campo[i][j+1]+=1
+                if(i+1<tamanho && campo[i+1][j]!= 'X')campo[i+1][j]+=1
+                if(i-1>=0 && campo[i-1][j]!= 'X')campo[i-1][j] += 1
+                if(j-1>=0 && campo[i][j-1]!='X')campo[i][j-1] += 1
+                if(i+1<tamanho && j-1>=0 && campo[i+1][j-1]!= 'X')campo[i+1][j-1]+=1
+                if(i-1>=0 && j+1<tamanho && campo[i-1][j+1]!='X')campo[i-1][j+1]+=1
+            }
+        }
+    }
+    return campo
+}
+function gerarCampo(tamanho){
     const campo = []
     for(let i=0;i<tamanho;i++){
         linha = []
@@ -41,12 +57,12 @@ function posicionarBombas(campo,bombas){
 
 //Estou usando a main para testar
 function main(){
-    var string = "3;22;32"
-    var campo = gerarCampo(string);
-
+    var string = prompt("Digite o tamanho da matriz e as posições das bombas de acordo com o modelo proposto")
+    var tamanho = parseInt(string.split(";")[0]);
+    var campo = gerarCampo(tamanho);
     let a = listaBombas(string)
-   
-    campo = posicionarBombas(campo, a);
+    campoComBombas = posicionarBombas(campo, a);
+    campoFinalizado = detectarBomba(tamanho,campoComBombas)
     console.log(a)
     console.table(campo); 
 }
