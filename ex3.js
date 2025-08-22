@@ -2,12 +2,12 @@
 function separarDigitos(string){ 
     return string.split(""); 
 }
-function converterParaNumero(digito){ 
+function converterParaInt(digito){ 
     return parseInt(digito); 
 }
 function transformarString(string){
     let digitos = separarDigitos(string);
-    return digitos.map(converterParaNumero);
+    return digitos.map(converterParaInt);
 }
 function transformarLista(listaDeStrings){ 
     return listaDeStrings.map(transformarString); 
