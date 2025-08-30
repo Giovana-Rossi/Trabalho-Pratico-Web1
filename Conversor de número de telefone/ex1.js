@@ -35,13 +35,14 @@ function conversor(string) {
 
 function verificador(frase) {
     var permitido = true;
-    var codigo = caractere.charCodeAt(0);
-    for(caractere in frase) {
+    for(let caractere of frase) { 
+        var codigo = caractere.charCodeAt(0); // Get the character code for the current character
         if(codigo < 97 || codigo > 122) {
-            return false;
+            // If the character code is not within the lowercase alphabet range (a-z)
+            return false; 
         }
     }
-    return permitido;
+    return permitido; 
 }
     
 //O programa não deve permitir o uso de caracteres especiais ou espaço
@@ -51,10 +52,10 @@ function main() {
     var permitirFrase = verificador(string);
     if(permitirFrase) {
         var numeros = conversor(string);
-        console.log(numeros);
+        alert(numeros);
     }
     else {
-        console.log("A frase inserida é inválida.")
+        alert("A frase inserida é inválida.")
     }
 }
 
