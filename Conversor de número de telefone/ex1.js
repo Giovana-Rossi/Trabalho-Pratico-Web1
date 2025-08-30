@@ -36,9 +36,8 @@ function conversor(string) {
 function verificador(frase) {
     var permitido = true;
     for(let caractere of frase) { 
-        var codigo = caractere.charCodeAt(0); // Get the character code for the current character
+        var codigo = caractere.charCodeAt(0); 
         if(codigo < 97 || codigo > 122) {
-            // If the character code is not within the lowercase alphabet range (a-z)
             return false; 
         }
     }
