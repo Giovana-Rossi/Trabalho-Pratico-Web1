@@ -54,14 +54,33 @@ function posicionarBombas(campo,bombas){
         }
     return campo
 }
+function verificarString(string){
+    if (string.includes(";")){
+        let partes = string.split(";")
+        if(partes.length<2)return false;
+        let tamanho = parseInt(partes[0]);
+        if(isNaN(tamanho) || tamanho <=0)return false;
+        for(let i =1;i<partes.length;i++){
+            let pos = partes[i]
+            if(pos.length !==2)return false;
+            if(isNaN(parseInt(pos[0])) || isNaN(parseInt(pos[1])))return false;
+            let linha = parseInt(pos[0]);
+            let coluna = parseInt(pos[1]);
+            if(linha < 1 || linha > tamanho || coluna < 1 || coluna > tamanho)return false;
 
+        }
+        return true
+    }
+}
 function main(){
-    var string = prompt("Digite o tamanho da matriz e as posições das bombas de acordo com o modelo proposto")
-    var tamanho = parseInt(string.split(";")[0]);
-    var campo = gerarCampo(tamanho);
-    let listaPosicoesBombas = listaBombas(string)
-    campoComBombas = posicionarBombas(campo, listaPosicoesBombas);
-    campoFinalizado = detectarBomba(tamanho,campoComBombas)
-    console.table(campo); 
+    let string = prompt("Digite o tamanho da matriz e as posições das bombas de acordo com o modelo proposto")
+    if (verificarString(string)){
+        let tamanho = parseInt(string.split(";")[0]);
+        let campo = gerarCampo(tamanho);
+        let listaPosicoesBombas = listaBombas(string)
+        campoComBombas = posicionarBombas(campo, listaPosicoesBombas);
+        campoFinalizado = detectarBomba(tamanho,campoComBombas)
+        console.table(campoFinalizado); }
+    else{alert("O modelo inserido é inválido. Use o formato: tamanho;linhaColuna;linhaColuna;...")}
 }
 main()
